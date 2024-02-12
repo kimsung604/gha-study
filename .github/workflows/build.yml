@@ -20,5 +20,15 @@ jobs:
       - name: upload jar file
         uses: actions/upload-artifact@v2
         with:
-          name: my-artifact
-          path: build/libs/*.jar
+          name: gha-study-1.0-SNAPSHOT.jar
+          path: build/libs/gha-study-1.0-SNAPSHOT.jar
+  test-build:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name : download jar file
+        uses : actions/download-artifact@v3
+        with:
+          name: gha-study-1.0-SNAPSHOT.jar
+      - name: test jar
+        run: java -jar gha-study-1.0-SNAPSHOT.jar
