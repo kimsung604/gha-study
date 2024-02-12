@@ -1,1 +1,19 @@
 name: build
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: build
+        uses: actions/gradle@v3
+        with:
+          args: build
+      - name: upload jar file
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-artifact
+          path: build/libs/*.jar
