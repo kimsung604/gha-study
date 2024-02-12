@@ -8,10 +8,10 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
+      - name: set up gradle
+        uses: gradle/actions/setup-gradle@v3
       - name: build
-        uses: actions/gradle@v3
-        with:
-          args: build
+        run: ./gradlew build
       - name: upload jar file
         uses: actions/upload-artifact@v2
         with:
